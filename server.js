@@ -31,7 +31,6 @@ app.get('/', function (req, res){
  */
 
 var portName = '/dev/tty.usbserial-A501JUTF';
-//var portName = '/dev/tty.usbmodem1421';
 var readData = ""; //Array to hold the values read from the port
 
 var sp = new serialPort(portName, {

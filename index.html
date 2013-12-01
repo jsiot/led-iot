@@ -1,218 +1,260 @@
-<!DOCTYPE html> <html>
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8">
-<title>Title</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/style/jquery.mobile-1.3.2.min.css" />
-	<!--<link rel="stylesheet" href="/style/jquery.mobile.structure-1.3.2.min.css" />
-	<link rel="stylesheet" href="/style/jquery.mobile.theme-1.3.2.min.css" /> -->
-	<script src="/js/jquery-1.10.2.min.js"></script>
-	<script src="/js/jquery.mobile-1.3.2.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css">  
+    <meta charset="utf-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style/jquery.mobile-1.3.2.min.css"/>
+    <!--<link rel="stylesheet" href="/style/jquery.mobile.structure-1.3.2.min.css" />
+    <link rel="stylesheet" href="/style/jquery.mobile.theme-1.3.2.min.css" /> -->
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>  
     <script type="text/javascript" src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script> -->
-    
+
     <style>
-    /*styling for security page. springboard style. --start-- */
-	   a:link, a:visited, a:hover, a:active { text-decoration:none; }
-	   .ui-block-a, .ui-block-b { height: 100px; position: relative; }
-	   .ui-grid-a { text-align: center; }
-	   .icon-label { color: #000; display: block; font-size:12px; }
-	   .icon-springboard { position: absolute; bottom: 0; width: 100%; }
-	/*styling for security page --end--*/
+        /*styling for security page. springboard style. --start-- */
+        a:link, a:visited, a:hover, a:active {
+            text-decoration: none;
+        }
+
+        .ui-block-a, .ui-block-b {
+            height: 100px;
+            position: relative;
+        }
+
+        .ui-grid-a {
+            text-align: center;
+        }
+
+        .icon-label {
+            color: #000;
+            display: block;
+            font-size: 12px;
+        }
+
+        .icon-springboard {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /*styling for security page --end--*/
     </style>
 
-    <script>
-    var iosocket = io.connect();
-    $(document).ready(function() {
-        $('#door1').click(function() {
-            value += 1;
-	    	value %= 2;
-	    iosocket.emit('button',value);
-	 });
-	});
-    </script>
+
 </head>
 
 <body>
 <div data-role="page" id="main">
-	<div data-role="header" data-position="fixed">
-		<h1>Home Automation with Arduino</h1>
-	</div>
-	<div data-role="content">
-		<ul data-role="listview" data-inset="true">
-			<li data-role="list-divider">Menu</li>
-			<li><a href="#security"><img src="./style/images/glyphicons_044_keys.png" class="ui-li-icon">Security</a></li>
-			<li><a href="#thermo"><img src="./style/images/glyphicons_041_charts.png" class="ui-li-icon">Thermostats</a></li>
-			<li><a href="#light"><img src="./style/images/glyphicons_064_lightbulb.png" class="ui-li-icon">Light</a></li>
-			<li><a href="#log"><img src="./style/images/glyphicons_319_sort.png" class="ui-li-icon">Log</a></li>
-		</ul>
-	</div>
-	<div data-role="footer" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#main" data-icon="home">Home</a></li>
-				<li><a href="#" data-icon="star" class="ui-btn-active">Voice Command</a></li>
-				<li><a href="#" data-icon="">Help ?</a></li>
-			</ul>
-		</div>
+    <div data-role="header" data-position="fixed">
+        <h1>Home Automation with Arduino</h1>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider">Menu</li>
+            <li><a href="#security"><img src="./style/images/glyphicons_044_keys.png" class="ui-li-icon">Security</a>
+            </li>
+            <li><a href="#thermo"><img src="./style/images/glyphicons_041_charts.png" class="ui-li-icon">Thermostats</a>
+            </li>
+            <li><a href="#light"><img src="./style/images/glyphicons_064_lightbulb.png" class="ui-li-icon">Light</a>
+            </li>
+            <li><a href="#log"><img src="./style/images/glyphicons_319_sort.png" class="ui-li-icon">Log</a></li>
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#main" data-icon="home">Home</a></li>
+                <li><a href="#" data-icon="star" class="ui-btn-active">Voice Command</a></li>
+                <li><a href="#" data-icon="">Help ?</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
-<div data-role=page id="security" data-add-back-btn = true>
-    	<div data-role="header" data-position="fixed">
-    		<a href="#main" data-icon="arrow-l">Back</a>
-    		<h1>Security Monitoring</h1>
-    	</div>
-    	<div datarole="content">
-    		<div class="ui-grid-a"> 
-            	<div class="ui-block-a">
-                	<div class="icon-springboard">
-                    	<a href="#" >
-							<img src="./style/images/glyphicons_050_link.png" alt="Room 1">
-							<span class="icon-label">Room 1</span><br />
-							
-						</a>
-					</div>
-				</div>        
-                        
-                <div class="ui-block-b">
-					<div class="icon-springboard">
-						<a href="#"> <img src="./style/images/glyphicons_050_link.png" alt="Room 2"> <span class="icon-label">Room 2</span> </a>
-					</div>
-				</div>
+<div data-role=page id="security" data-add-back-btn=true>
+    <div data-role="header" data-position="fixed">
+        <a href="#main" data-icon="arrow-l">Back</a>
 
-				<div class="ui-block-a">
-					<div style="position: absolute; bottom: 0; width:100%;">
-						<a href="#"> <img src="./style/images/glyphicons_050_link.png" alt="Room 3"> <span class="icon-label">Room 3</span> </a>
-					</div>
-				</div>
+        <h1>Security Monitoring</h1>
+    </div>
+    <div datarole="content">
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <div class="icon-springboard">
+                    <a href="#">
+                        <img src="./style/images/glyphicons_050_link.png" alt="Room 1">
+                        <span class="icon-label">Room 1</span><br/>
 
-				<div class="ui-block-b">
-					<div style="position: absolute; bottom: 0; width:100%;">
-						<a href="../ch4/contact-us.html"> <img src="./style/images/glyphicons_050_link.png" alt="Room 4"> <span class="icon-label">Room 4</span> </a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </a>
+                </div>
+            </div>
 
+            <div class="ui-block-b">
+                <div class="icon-springboard">
+                    <a href="#"> <img src="./style/images/glyphicons_050_link.png" alt="Room 2"> <span
+                            class="icon-label">Room 2</span> </a>
+                </div>
+            </div>
 
-<div data-role=page id="thermo" data-add-back-btn = true>
-    	<div data-role="header">
-    		<a href="#main" data-icon="arrow-l">Back</a>
-    		<h1>Thermometer Monitoring</h1>
-    	</div>
-    	<div datarole="content">
-    		<div class="ui-grid-a">
-	    		<div class="ui-block-a">
-	    			<p>temperature : 7 </p>
-	    		</div>
-	    		<div class="ui-block-a">
-	    			<p>
-	    				Location
-	    			</p>
-	    		</div>
-    		</div>
-       	</div>
+            <div class="ui-block-a">
+                <div style="position: absolute; bottom: 0; width:100%;">
+                    <a href="#"> <img src="./style/images/glyphicons_050_link.png" alt="Room 3"> <span
+                            class="icon-label">Room 3</span> </a>
+                </div>
+            </div>
+
+            <div class="ui-block-b">
+                <div style="position: absolute; bottom: 0; width:100%;">
+                    <a href="../ch4/contact-us.html"> <img src="./style/images/glyphicons_050_link.png" alt="Room 4">
+                        <span class="icon-label">Room 4</span> </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div data-role=page id="light" data-add-back-btn = true>
-    	<div data-role="header">
-    		<a href="#main" data-icon="arrow-l">Back</a>
-    		<h1>Light Monitoring</h1>
-    	</div>
-    	<div datarole="content">
-			<ul data-role="collapsible-set" data-theme="a" data-content-theme="c">
-				<div data-role="collapsible" data-collapsed="true">
-					<h3>Room 1</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Switch</li>
-						<div data-role="fieldcontain">
-								<label for="door">Lamp 1 :</label>
-								<select name="door" id="door1" data-role="slider">
-									<option value="0">Off</option>
-									<option value="1">On</option>
-								</select>
-						</div>
-						<li>Moody</li>
-						<div data-role="fieldcontain">
-     						<label for="red">Red:</label>
-     						<input type="range" name="redSlider" id="redSlider" min="0" max="100" value="0" data-highlight="true"><br />
-     						
-     						<label for="green">Green:</label>
-     						<input type="range" name="greenSlider" id="greenSlider" min="0" max="100" value="0" data-highlight="true"><br />
-     						
-     						<label for="blue">Blue:</label>
-     						<input type="range" name="blueSlider" id="blueSlider" min="0" max="100" value="0" data-highlight="true"><br />
-   													
-   						</div>
-					 </ul>
-				 </div>
-			 </ul>
-		</div>		
+<div data-role=page id="thermo" data-add-back-btn=true>
+    <div data-role="header">
+        <a href="#main" data-icon="arrow-l">Back</a>
 
-<div data-role=page id="log" data-add-back-btn = true>
-    	<div data-role="header">
-    		<a href="#main" data-icon="arrow-l">Back</a>
-    		<h1>Log Activity</h1>
-    	</div>
-    	
-    	<ul data-role="collapsible-set" data-theme="a" data-content-theme="c">
-				<div data-role="collapsible" data-collapsed="true">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				<div data-role="collapsible">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				<div data-role="collapsible">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				<div data-role="collapsible">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				<div data-role="collapsible">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				<div data-role="collapsible">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				<div data-role="collapsible">
-					<h3>Day and Date of event</h3>
-					<ul data-role="listview" data-inset="true">
-						<li>Activity 1</li>
-						<li>Activity 2</li>
-					</ul>
-				</div>
-				
-			</ul>
+        <h1>Thermometer Monitoring</h1>
+    </div>
+    <div datarole="content">
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <p>temperature : 7 </p>
+            </div>
+            <div class="ui-block-a">
+                <p>
+                    Location
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<div data-role=page id="light" data-add-back-btn=true>
+    <div data-role="header">
+        <a href="#main" data-icon="arrow-l">Back</a>
+
+        <h1>Light Monitoring</h1>
+    </div>
+    <div datarole="content">
+        <ul data-role="collapsible-set" data-theme="a" data-content-theme="c">
+            <div data-role="collapsible" data-collapsed="true">
+                <h3>Room 1</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Switch</li>
+                    <div data-role="fieldcontain">
+                        <label for="door">Lamp 1 :</label>
+                        <select name="door" id="door1" data-role="slider">
+                            <option value="0">Off</option>
+                            <option value="1">On</option>
+                        </select>
+                    </div>
+                    <li>Moody</li>
+                    <div data-role="fieldcontain">
+                        <label for="red">Red:</label>
+                        <input type="range" name="redSlider" id="redSlider" min="0" max="100" value="0"
+                               data-highlight="true"><br/>
+
+                        <label for="green">Green:</label>
+                        <input type="range" name="greenSlider" id="greenSlider" min="0" max="100" value="0"
+                               data-highlight="true"><br/>
+
+                        <label for="blue">Blue:</label>
+                        <input type="range" name="blueSlider" id="blueSlider" min="0" max="100" value="0"
+                               data-highlight="true"><br/>
+
+                    </div>
+                </ul>
+            </div>
+        </ul>
+    </div>
+
+    <div data-role=page id="log" data-add-back-btn=true>
+        <div data-role="header">
+            <a href="#main" data-icon="arrow-l">Back</a>
+
+            <h1>Log Activity</h1>
+        </div>
+
+        <ul data-role="collapsible-set" data-theme="a" data-content-theme="c">
+            <div data-role="collapsible" data-collapsed="true">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+            <div data-role="collapsible">
+                <h3>Day and Date of event</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li>Activity 1</li>
+                    <li>Activity 2</li>
+                </ul>
+            </div>
+
+        </ul>
+    </div>
+
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.mobile-1.3.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        var iosocket = io.connect('http://localhost:3000');
+
+        $('#door1').on('change', function () {
+
+            var value = $('#door1').val();
+            //value += 1;
+            //value %= 2;
+            console.log(value);
+            // fire to socket
+            iosocket.emit('button', {lampstatus: value});
+        });
+
+    </script>
+
 </body>
 </html>
 

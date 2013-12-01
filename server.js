@@ -7,8 +7,35 @@ var express = require('express'),
 	io = require('socket.io').listen(server),
 	serialPort = require('serialport').SerialPort;
 
-server.listen(3000);
-console.log('listen on port 3000')
+
+
+/*
+ * Serial Port Setup
+ */
+
+var portName = '/dev/ttyACM0';
+var readData = ""; //Array to hold the values read from the port
+
+var sp = new serialPort(portName, {
+    baudRate : 57600,
+    dataBits : 8,
+    parity : 'none',
+    stopBits: 1,
+    flowControl : false,
+});
+
+
+
+io.sockets.on('connection', function(socket, debug){
+    if(debug == false){
+        socketServer.set('log level', 1);
+    }
+    socket.on('button', function(data){
+        console.log("data from client: "+data.lampstatus);
+        //serialPort.write(data);
+    })
+});
+
 
 /*
  * Express setup
@@ -26,32 +53,10 @@ app.get('/', function (req, res){
 });
 
 
-/*
- * Serial Port Setup
- */
-
-var portName = '/dev/tty.usbserial-A501JUTF';
-var readData = ""; //Array to hold the values read from the port
-
-var sp = new serialPort(portName, {
-	baudRate : 9600,
-	dataBits : 8,
-	parity : 'none',
-	stopBits: 1,
-	flowControl : false,
-}); 
+server.listen(3000);
+console.log('listen on port 3000')
 
 
-
-io.sockets.on('connection', function(socket, debug){
-	if(debug == false){
-		socketServer.set('log level', 1);
-	}
-	io.on('button', function(data){
-		console.log(data);
-		serialPort.write(data);
-	})
-});
 
 
 

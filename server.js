@@ -20,11 +20,6 @@ app.configure(function(){
 	app.use(express.static(__dirname + '/'));
 });
 
-// error handlers
-//app.configure('development', function(){
-//	app.use(express.errorHandlers());
-//});
-
 // respon to web GET request on index.html
 app.get('/', function (req, res){
 	res.sendfile(__dirname + '/index.html');
@@ -47,23 +42,9 @@ var sp = new serialPort(portName, {
 	flowControl : false,
 }); 
 
-/*
- *konfigurasi node untuk controlling
- */
 
-/*sp.on("open", function(){
-	console.log('komunikasi serial terbuka');
-	// listening incoming data
-	sp.on('data', function(data){
-		
-		if (readData ){
-			serial
-		}
-	})
 
-})*/
-
-/*io.sockets.on('connection', function(socket, debug){
+io.sockets.on('connection', function(socket, debug){
 	if(debug == false){
 		socketServer.set('log level', 1);
 	}
@@ -71,7 +52,7 @@ var sp = new serialPort(portName, {
 		console.log(data);
 		serialPort.write(data);
 	})
-});*/
+});
 
 
 
